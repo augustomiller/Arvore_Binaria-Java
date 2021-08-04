@@ -87,5 +87,40 @@ public class ArvoreBinaria< T extends Comparable<T> >  {
         }
     }
 
+    /*
+    * Método remove
+    * */
+    public void remover(T conteudo){
+        try {
+            BinNo<T> atual = this.raiz;
+            BinNo<T> pai = null;
+            BinNo<T> filho = null;
+            BinNo<T> temp = null;
 
+            // 1º Encontrar o nó que tem o conteúdo que estou a passar ("...remover(T conteúdo){...")
+            // 2º Vamos fazer um loop para percorrer a árvore para encontrar esse conteúdo...
+            while (atual != null && !atual.getConteudo().equals(conteudo)){ //  Enquanto o meu atual não for igual ao meu conteúdo e diferente de nulo, o ‘loop’ continua...
+                pai = atual;
+                /*
+                * if: Caminhando dentro da árvore em busca do "conteúdo", para verificar se o "conteúdo" que passei é menor que o
+                * conteúdo desse nó, para saber para qual lado deve ir, para o nó esquerdo ou nó direito.
+                *
+                * A partir do momento que encontrar o conteúdo, ele vai quebrar o loop e sabe que o atual é exatamente
+                * o nó que eu tenho aquele conteúdo...
+                * */
+                if (conteudo.compareTo(atual.getConteudo()) < 0){
+                   atual = atual.getNoEsquerdo(); // Se o conteúdo for menor eu vou para o nó da esquerda...
+                }else{
+                    atual = atual.getNoDireito(); // Se o conteúdo for maior eu vou para o nó da direita...
+                }
+                // Após percorrer toda a árvore e não encontrar o elemento (chegou numa folha ou a raiz é nula)...
+                if (atual == null){
+                    System.out.println("Conteúdo não encontrado. Bloco Try");
+                }
+            }
+
+        }catch (NullPointerException erro){ // Quando um conteúdo que estiver a buscar não for encontrado, o catch vê onde ele cai...
+            System.out.println("Conteúdo não encontrado. Bloco Catch");
+        }
+    }
 }
