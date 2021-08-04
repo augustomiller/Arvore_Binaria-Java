@@ -113,10 +113,10 @@ public class ArvoreBinaria< T extends Comparable<T> >  {
                 }else{
                     atual = atual.getNoDireito(); // Se o conteúdo for maior eu vou para o nó da direita...
                 }
-                // Após percorrer toda a árvore e não encontrar o elemento (chegou numa folha ou a raiz é nula)...
-                if (atual == null){
-                    System.out.println("Conteúdo não encontrado. Bloco Try");
-                }
+            }
+            // Após percorrer toda a árvore e não encontrar o elemento (chegou numa folha ou a raiz é nula)...
+            if (atual == null){
+                System.out.println("Conteúdo não encontrado. Bloco Try");
             }
 
         }catch (NullPointerException erro){ // Quando um conteúdo que estiver a buscar não for encontrado, o catch vê onde ele cai...
