@@ -8,6 +8,7 @@ public class ArvoreBinaria< T extends Comparable<T> >  {
         this.raiz = null;
     }
 
+    // Método responsável por chamar a exibição recursiva...
     public void inserir(T conteudo){
         BinNo<T> novoNo = new BinNo<>(conteudo); // Criando um novo nó do tipo conteúdo.
         raiz = inserir(raiz, novoNo);
@@ -27,4 +28,64 @@ public class ArvoreBinaria< T extends Comparable<T> >  {
         }
         return atualNo; // Depois de percorrer todos esses loops vamos retornar o nó atual...
     }
+
+    /*
+    * Exibição em ordem do menor para o maior a partir da Raiz...
+    * */
+    public void exibirInOrdem(){
+        System.out.println("\n Exibindo InOrdem!");
+        exibirInOrdem(this.raiz);
+    }
+    /*
+    * Como essa exibição recursiva é em ordem, primeiro visitamos o elemento da esquerda, depois exibe o nó e
+    * então visita o nó da direita e vai fazendo isso, a lógica é essa...
+    * Enquanto o nó não estiver nulo o método recursivo continua a exibir...
+    * */
+    private void exibirInOrdem(BinNo<T> atualNo){
+        if (atualNo != null){ // Vamos conferir se o nó atual não está nulo, se sim quer dizer que está no final da exibição...
+             exibirInOrdem(atualNo.getNoEsquerdo());
+            System.out.println(atualNo.getConteudo() + ", "); // Exibindo o atual...
+            exibirInOrdem(atualNo.getNoDireito()); // Visitando o da direita...
+        }
+    }
+
+    /*
+     * Exibição em ordem do menor para o maior a partir da Raiz...
+     * */
+    public void exibirPosOrdem(){
+        System.out.println("\n Exibindo Pós-Ordem!");
+        exibirPosOrdem(this.raiz);
+    }
+    /*
+     * Como essa exibição recursiva é em Pós-ordem, primeiro ele visita depois exibe...
+     * Enquanto o nó não estiver nulo o método recursivo continua a exibir...
+     * */
+    private void exibirPosOrdem(BinNo<T> atualNo){
+        if (atualNo != null){ // Vamos conferir se o nó atual não está nulo, se sim quer dizer que está no final da exibição...
+            exibirPosOrdem(atualNo.getNoEsquerdo());
+            exibirPosOrdem(atualNo.getNoDireito()); // Visitando o da direita...
+            System.out.println(atualNo.getConteudo() + ", "); // Exibindo o atual...
+        }
+    }
+
+    /*
+     * Exibição em ordem do menor para o maior a partir da Raiz...
+     * */
+    public void exibirPreOrdem(){
+        System.out.println("\n Exibindo Pré-Ordem!");
+        exibirPreOrdem(this.raiz);
+    }
+    /*
+     * Como essa exibição recursiva é em Pré-ordem, primeiro exibimos depois ele visita os nós...
+     * Enquanto o nó não estiver nulo o método recursivo continua a exibir...
+     * */
+    private void exibirPreOrdem(BinNo<T> atualNo){
+        if (atualNo != null){ // Vamos conferir se o nó atual não está nulo, se sim quer dizer que está no final da exibição...
+            System.out.println(atualNo.getConteudo() + ", "); // Exibindo o conteúdo principal...
+            exibirPreOrdem(atualNo.getNoEsquerdo());
+            exibirPreOrdem(atualNo.getNoDireito()); // Visitando o da direita...
+        }
+    }
+
+
 }
