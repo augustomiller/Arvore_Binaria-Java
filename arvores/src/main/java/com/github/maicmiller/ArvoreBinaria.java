@@ -140,8 +140,18 @@ public class ArvoreBinaria< T extends Comparable<T> >  {
                      filho.setNoDireito(raiz.getNoDireito());
                      raiz = filho;
                  }
-             }else if (atual.getNoDireito() == null){ // 2.ª possibilidade:
-
+             /*
+             * Percorrer por dentro da árvore para o caso da referência do nó atual a direita ser nulo.
+             * */
+             }else if (atual.getNoDireito() == null){ // 2.ª possibilidade: testa se a referencia de nó a direita, do nó atual é nulo.
+                 if (pai.getNoEsquerdo() == atual){ // se a referencia de nó pai a esquerda é igual ao nó atual;
+                     pai.setNoEsquerdo(atual.getNoEsquerdo()); // a referencia de nó à esquerda do nó pai, vai ser a mesma referencia de nó à esquerda do nó atual...
+                 }else{ // se as possibilidades acima não for verdade;
+                     pai.setNoDireito(atual.getNoEsquerdo());
+                 }
+             /*
+              * Percorrer por dentro da árvore para o caso da referência do nó atual a esquerda ser nulo.
+              * */
              }else if (atual.getNoEsquerdo() == null){ // 3.ª possibilidade:
 
              }else{ // 4.ª possibilidade:
