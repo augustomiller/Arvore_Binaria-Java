@@ -159,7 +159,22 @@ public class ArvoreBinaria< T extends Comparable<T> >  {
                      pai.setNoDireito(atual.getNoDireito());
                  }
              }else{ // 4.ª possibilidade:
-
+                 for(
+                     temp = atual, filho = atual.getNoEsquerdo();
+                     filho.getConteudo() != null;
+                     temp = filho, filho = filho.getNoDireito();
+                 ){
+                     if (filho != atual.getNoEsquerdo()){
+                         temp.setNoDireito(filho.getNoEsquerdo());
+                         filho.setNoEsquerdo(atual.getNoEsquerdo());
+                     }
+                     filho.setNoDireito(atual.getNoDireito());
+                     if (pai.getNoEsquerdo() == atual){
+                         pai.setNoEsquerdo(filho);
+                     }else{
+                         pai.setNoDireito(filho);
+                     }
+                 }
              }
 
         }catch (NullPointerException erro){ // Quando um conteúdo que estiver a buscar não for encontrado, o catch vê onde ele cai...
