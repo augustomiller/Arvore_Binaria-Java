@@ -119,6 +119,35 @@ public class ArvoreBinaria< T extends Comparable<T> >  {
                 System.out.println("Conteúdo não encontrado. Bloco Try");
             }
 
+             if (pai == null){ // 1.ª possibilidade:
+                 if (atual.getNoDireito() == null){ // Primeira condição:
+                     this.raiz = atual.getNoEsquerdo(); // Se eu tenho o nó da direita como nulo, pega o da esquerda inevitavelmente...
+                 }else if (atual.getNoEsquerdo() == null){
+                     this.raiz = atual.getNoDireito(); // Se eu tenho o nó da esquerda como nulo, pega o da direita inevitavelmente...
+                 }else{ // caso não ocorra nenhuma das condições acima...
+                     for(temp = atual, filho = atual.getNoEsquerdo();
+                        filho.getNoDireito() != null; // condição de parada do for...
+                        temp = filho, filho = filho.getNoEsquerdo() // para cada ciclo de execução incrementa...
+                     ){
+                         /*
+                         * tratando do caso, dos nós descendentes do nó que está a ser retirado...
+                         * */
+                         if (filho != atual.getNoEsquerdo()){ // o filho diferente da referência de nó à esquerda do nó atual...
+                             temp.setNoDireito(filho.getNoEsquerdo());
+                             filho.setNoEsquerdo(raiz.getNoEsquerdo());
+                         }
+                     }
+                     filho.setNoDireito(raiz.getNoDireito());
+                     raiz = filho;
+                 }
+             }else if (atual.getNoDireito() == null){ // 2.ª possibilidade:
+
+             }else if (atual.getNoEsquerdo() == null){ // 3.ª possibilidade:
+
+             }else{ // 4.ª possibilidade:
+
+             }
+
         }catch (NullPointerException erro){ // Quando um conteúdo que estiver a buscar não for encontrado, o catch vê onde ele cai...
             System.out.println("Conteúdo não encontrado. Bloco Catch");
         }
